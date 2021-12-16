@@ -9,15 +9,18 @@ public class Sentences {
 
     public void addSentence(String sentence) {
         if (isUpperCaseString(sentence)) {
-            sentences.add(sentence);
+            if (isEndStringCorrect(sentence)) {
+                sentences.add(sentence);
+            } else {
+                throw new IllegalArgumentException("Sentence must end with ending mark!");
+            }
         } else {
             throw new IllegalArgumentException("Sentence must start with capital!");
         }
-        if (sentence.endsWith(".") || sentence.endsWith("?") || sentence.endsWith("!")) {
-            sentences.add(sentence);
-        } else {
-            throw new IllegalArgumentException("Sentence must end with ending mark!");
-        }
+    }
+
+    private boolean isEndStringCorrect(String sentence) {
+        return sentence.endsWith(".")  || sentence.endsWith("?") || sentence.endsWith("!");
     }
 
     private boolean isUpperCaseString(String sentence) {
@@ -34,13 +37,13 @@ public class Sentences {
             }
         }
         if (line == null) {
-            throw new IllegalStateException("A lista nem lehet üres!");
+            throw new IllegalStateException("A sor nem lehet üres!");
+        } else {
+            return line;
         }
-        return line;
     }
 
     public List<String> getSentences() {
-
         return new ArrayList<>(sentences);
     }
 }
