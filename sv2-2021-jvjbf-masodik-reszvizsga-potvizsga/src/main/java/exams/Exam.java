@@ -39,4 +39,12 @@ public abstract class Exam {
     public ExamResult getExamResult() {
         return examResult;
     }
+
+    public void setMaxPoints(int maxPoints) {
+        this.maxPoints = maxPoints;
+    }
+
+    public double actualPointsPerMaxPoints(int actualPoints) {
+        return 100.0 * actualPoints / maxPoints;
+    }
 }
