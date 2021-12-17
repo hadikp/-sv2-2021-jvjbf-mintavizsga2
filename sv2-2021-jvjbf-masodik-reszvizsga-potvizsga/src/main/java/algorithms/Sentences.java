@@ -28,6 +28,9 @@ public class Sentences {
     }
 
     public String  findLongestSentence() {
+        if (sentences.size() == 0) {
+            throw new IllegalStateException("A sor nem lehet üres!");
+        }
         int max = sentences.get(0).length();
         String line = sentences.get(0);
         for (String st: sentences) {
@@ -36,11 +39,7 @@ public class Sentences {
                 line = st;
             }
         }
-        if (line == null) {
-            throw new IllegalStateException("A sor nem lehet üres!");
-        } else {
-            return line;
-        }
+        return line;
     }
 
     public List<String> getSentences() {
