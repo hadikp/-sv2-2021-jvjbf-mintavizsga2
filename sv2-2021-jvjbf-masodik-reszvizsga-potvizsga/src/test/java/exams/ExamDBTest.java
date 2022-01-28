@@ -49,7 +49,7 @@ class ExamDBTest {
 
     @Test
     void countPassedExamsTEst() {
-        int count = examDB.countPassedExams();
+        long count = examDB.countPassedExams();
 
         assertEquals(3, count);
 
@@ -67,7 +67,7 @@ class ExamDBTest {
     void findTopicByPrefixTest(){
         List<String> result = examDB.findTopicByPrefix("Java");
 
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertEquals("Java első részvizsga",result.get(0));
 
     }

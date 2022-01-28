@@ -2,6 +2,7 @@ package exams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExamDB{
 
@@ -16,7 +17,7 @@ public class ExamDB{
         return new ArrayList<>(exams);
     }
 
-    public int countPassedExams() {
+    /*public int countPassedExams() {
         int count = 0;
         for (Exam e: exams) {
             if (e.getExamResult().equals(ExamResult.PASSED) || e.getExamResult().equals(ExamResult.OK) || e.getExamResult().equals(ExamResult.PERFECT)) {
@@ -24,9 +25,14 @@ public class ExamDB{
             }
         }
         return count;
+    }*/
+
+    public long countPassedExams() {
+        return exams.stream().filter(o -> o.getExamResult() == ExamResult.PASSED || o.getExamResult() == ExamResult.OK || o.getExamResult() == ExamResult.PERFECT)
+                .count();
     }
 
-    public List<Exam> findById(long studentId) {
+    /*public List<Exam> findById(long studentId) {
         List<Exam> result = new ArrayList<>();
         for (Exam e: exams) {
             if (e.getStudentId() == studentId) {
@@ -34,6 +40,10 @@ public class ExamDB{
             }
         }
         return result;
+    }*/
+
+    public List<Exam> findById(long studentId) {
+        return exams.stream().filter(o -> o.getStudentId() == studentId).toList();
     }
 
     public List<String> findTopicByPrefix(String prefix) {
